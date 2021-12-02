@@ -27,7 +27,7 @@
 }
 body
 {
-    margin: 10px;
+    margin: 0;
     padding: 0;
     background-image: url('../img/diagonal_plaid_seamless_pattern_5307590.png');
     background-color: rgb(var(--color-white));
@@ -36,6 +36,7 @@ body
 
     font-family: 'Raleway', sans-serif;
 }
+
 h1, h2, h3, h4, h5, h6
 {
     margin: 0;
@@ -68,10 +69,20 @@ a, svg, ul, ol
 .section-text::after,
 img
 {
+    -webkit-animation-name: img-loading;
+    -webkit-animation-fill-mode: backwards;
+
+    -o-animation-name: img-loading;
+    -o-animation-fill-mode: backwards;
+
+    -moz-animation-name: img-loading;
+    
     animation-name: img-loading;
     animation-duration: 200ms;
     animation-delay: 200ms;
     animation-fill-mode: backwards;
+    
+    
 }
 
 @keyframes img-loading
@@ -183,6 +194,7 @@ img
 }
 .perfil_photo
 {
+    margin-top: 10px;
     height: 240px;
 }
 .perfil_photo img
@@ -203,16 +215,18 @@ img
 .perfil_name > span /* [NAME]:icon */
 {
     display: block;
-    height: 50px;
+    height: 2em;
     color: #7b8b29;
 }
 .perfil_name > span:nth-child(1)
 {
     transform: rotate(315deg) rotateY(180deg);
+    -webkit-transform: rotate(315deg) rotateY(180deg);
 }
 .perfil_name > span:nth-child(3)
 {
     transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 .perfil_name > span > svg
 {
@@ -238,6 +252,7 @@ img
     border-radius: 50%;
     background: currentColor;
     transform: translateY(-30%);
+    -webkit-transform: translateY(-30%);
 }
 
 .perfil_photo,
@@ -256,7 +271,7 @@ img
     position: relative;
     padding: 10px 20px;
 }
-.section-text::before,
+.section-text::before, /* [AREA]:images*/
 .section-text::after
 {
     content: '';
@@ -268,7 +283,7 @@ img
     background-size: contain;
     z-index: -1;
 }
-.section-text::before /* [AREA]:images*/
+.section-text::before
 {
     left: -105;
     top: 0;
@@ -305,6 +320,11 @@ img
     opacity: .3;
     z-index: -1;
 }
+.box-text > .marker p
+{
+    margin: 0;
+    padding: 0;
+}
 
 
 /* --------------- [SECTION-3]: GALLERY AREA --------------- */
@@ -321,7 +341,7 @@ img
    justify-content: center;
    padding: 5px 0;
    font-size: 0.9em;
-   color: rgb(var(--color-white));
+   color: rgb(var(--color-black), .5);
 }
 .gallery_title > h1,
 .gallery_title > span
@@ -371,7 +391,10 @@ img
     position: relative;
     cursor: pointer;
     box-shadow: 0 0 0;
-    transition: all 200ms linear;
+    transition: all 200ms;
+    -o-transition: all 200ms;
+    -moz-transition: all 200ms;
+    -webkit-transition: all 200ms;
 }
 
 .content-photos::before, /* [GALLERY]:hover-effect */
@@ -382,7 +405,11 @@ img
     top: 0; bottom: 0;
     left: 0; right: 0;
     opacity: 0;
-    transition: all 300ms linear;
+    
+    transition: all 300ms;
+    -o-transition: all 300ms;
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
 }
 .content-photos::after
 {
@@ -396,13 +423,13 @@ img
 {
     background: url('../img/mais-zoom_597207.svg') no-repeat;
     background-position: center;
-    background-size: 5px;
+    background-size: 20px;
     z-index: 1;
 }
 .content-photos:hover::before
 {
     background-size: 30px;
-    opacity: .8;
+    opacity: 0.8;
 }
 .photos_box .photos  /* [PICTURE]:box */
 {
@@ -423,7 +450,10 @@ img
     -moz-user-select: none;
     -webkit-user-select: none;
 
-    transition: all 200ms linear;
+    transition: all 300ms;
+    -o-transition: all 300ms;
+    -moz-transition: all 300ms;
+    -webkit-transition: all 300ms;
 }
 
 .content-photos:hover img /* [HOVER-EFFECT]:picture */
@@ -433,7 +463,7 @@ img
     filter:         grayscale(.6) contrast(120%) blur(1px);
     -webkit-filter: grayscale(.6) contrast(120%) blur(1px);
     
-    width:  100%; height: 100%;
+    width:  100%; height: 100%;;
 }
 
 
@@ -454,13 +484,141 @@ img
 #footer-content a
 {
     display: inline-block;
-    color: currentColor;
+    
     opacity: .8;
 
-    transition: all 200ms linear;
+    transition: transform 200ms cubic-bezier(0, 0, 0.58, 0.75);
+    -o-transition: transform 200ms cubic-bezier(0, 0, 0.58, 0.75);
+    -moz-transition: transform 200ms cubic-bezier(0, 0, 0.58, 0.75);
+    -webkit-transition: transform 200ms cubic-bezier(0, 0, 0.58, 0.75);
 }
 #footer-content a:hover
 {
     opacity: 1;
     transform:  scale(1.1);
+    -webkit-transform:  scale(1.1);
+
+    animation-name: teste-tt;
+    animation-delay: 500ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes teste-tt
+{
+    0%
+    {
+        color: rgb(var(--color-black));
+    }
+    100%
+    {
+        color: rgb(var(--color-white)); opacity: 0;
+    }
+}
+
+
+/* --------------- [MOBILE]: RESPONSIVE --------------- */
+@media only screen and (max-width: 1050px)
+{
+    .content-body
+    {
+        max-width: 500px;
+    }
+    .content-header > .content-body
+    {
+        padding: 0 10px;
+    }
+    .perfil_photo
+    {
+        height: 200px;
+    }
+    .photos_box > .line-one,
+    .photos_box > .line-two,
+    .photos_box > .line-three
+    {
+        grid-template-columns: 1fr;
+    }
+    .photos_box .photos
+    {
+        height: auto;
+    }
+}
+@media only screen and (max-width: 768px)
+{
+    body
+    {
+        margin: 15px;
+        background-size: 15%;
+    }
+    .content-body
+    {
+        max-width: none;
+    }
+    .section-text::after
+    {
+        width: 100%;
+        background-size: cover;
+        background-position: top;
+        right: 0;
+        bottom: 0;
+        z-index: auto;
+        filter: gray;
+        filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale")
+                contrast(6.5);
+        opacity: .06;
+    }
+    .section-text::before
+    {
+        display: none;
+    }
+    .content-photos:hover img
+    {
+        filter:         grayscale(0) contrast(100%) blur(0);
+        -webkit-filter: grayscale(0) contrast(100%) blur(0);
+        
+        width:  104%; height: 104%;
+    }
+}
+@media only screen and (max-width: 500px)
+{
+    body
+    {
+        background-size: 20%;
+    }
+    .data-perfil
+    {
+        font-size: 5vw;
+    } 
+}
+@media only screen and (max-width: 410px)
+{
+    body
+    {
+        background-size: 30%;
+    }
+}
+@media only screen and (max-width: 345px)
+{
+    body
+    {
+        background-size: 40%;
+    }
+    .perfil_photo
+    {
+        height: 170px;
+    }
+}
+@media only screen and (max-width: 300px)
+{
+    body
+    {
+        margin: 5px;
+    }
+    .content-header > .content-body
+    {
+        padding: 0 5px;
+    }
+    .photos_box .photos
+    {
+        height: 100vw;
+    }
 }
